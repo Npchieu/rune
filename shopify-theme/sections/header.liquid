@@ -1,0 +1,71 @@
+<header class="site-header" id="site-header" data-color-initial="{{ section.settings.initial_color }}">
+  <div class="site-header__inner">
+
+    <!-- Left nav -->
+    <nav class="site-header__nav site-header__nav--left" aria-label="Main navigation left">
+      <a href="/collections/all" class="nav-link">SHOP</a>
+      <a href="/collections/hoodies" class="nav-link">HOODIES</a>
+      <a href="/collections/t-shirts" class="nav-link">TEES</a>
+    </nav>
+
+    <!-- Center logo — color changes on scroll -->
+    <a href="/" class="site-header__logo" id="site-logo" aria-label="{{ shop.name }}">
+      {%- if section.settings.logo != blank -%}
+        <img
+          src="{{ section.settings.logo | image_url: width: 300 }}"
+          alt="{{ shop.name }}"
+          class="site-header__logo-img"
+          width="150"
+          height="40"
+          loading="eager"
+        >
+      {%- else -%}
+        <span class="site-header__logo-text">SCUFFERS</span>
+      {%- endif -%}
+    </a>
+
+    <!-- Right nav -->
+    <nav class="site-header__nav site-header__nav--right" aria-label="Main navigation right">
+      <a href="/collections/caps" class="nav-link">CAPS</a>
+      <a href="/pages/about" class="nav-link">ABOUT</a>
+      <button class="nav-link nav-icon-btn" id="cart-toggle" aria-label="Open cart">
+        BAG
+        <span class="cart-count" id="cart-count" style="display:none">0</span>
+      </button>
+    </nav>
+
+    <!-- Mobile hamburger -->
+    <button class="site-header__hamburger" id="mobile-menu-toggle" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+
+  <!-- Scroll color-zone markers (hidden) — each section registers its color via data-header-color -->
+  <div id="color-zone-tracker" aria-hidden="true"></div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "select",
+      "id": "initial_color",
+      "label": "Initial logo color",
+      "options": [
+        {"value": "light", "label": "Light (white)"},
+        {"value": "dark", "label": "Dark (black)"}
+      ],
+      "default": "light"
+    }
+  ]
+}
+{% endschema %}

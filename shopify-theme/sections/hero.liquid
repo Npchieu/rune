@@ -1,0 +1,129 @@
+<section
+  class="hero"
+  data-header-color="{{ section.settings.header_color }}"
+  style="
+    background-color: {{ section.settings.bg_color }};
+    {%- if section.settings.bg_image != blank -%}
+    background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
+    {%- endif -%}
+  "
+>
+  {%- if section.settings.bg_image != blank -%}
+    <div class="hero__overlay" style="opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}"></div>
+  {%- endif -%}
+
+  <div class="hero__content">
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="hero__eyebrow" style="color: {{ section.settings.text_color }}">
+        {{ section.settings.eyebrow }}
+      </span>
+    {%- endif -%}
+
+    {%- if section.settings.heading != blank -%}
+      <h1 class="hero__heading" style="color: {{ section.settings.text_color }}">
+        {{ section.settings.heading }}
+      </h1>
+    {%- endif -%}
+
+    {%- if section.settings.subheading != blank -%}
+      <p class="hero__subheading" style="color: {{ section.settings.text_color }}">
+        {{ section.settings.subheading }}
+      </p>
+    {%- endif -%}
+
+    {%- if section.settings.cta_label != blank -%}
+      <a
+        href="{{ section.settings.cta_url }}"
+        class="btn {% if section.settings.text_color == '#ffffff' or section.settings.text_color == '#fff' %}btn--light{% else %}btn--dark{% endif %}"
+      >
+        {{ section.settings.cta_label }}
+      </a>
+    {%- endif -%}
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="hero__scroll-hint" aria-hidden="true">
+    <div class="hero__scroll-line" style="background: {{ section.settings.text_color }}"></div>
+    <span style="color: {{ section.settings.text_color }}">SCROLL</span>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "tag": "section",
+  "class": "section-hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background image"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Image overlay opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "header_color",
+      "label": "Header/logo color when in this section",
+      "options": [
+        {"value": "light", "label": "Light (white)"},
+        {"value": "dark", "label": "Dark (black)"}
+      ],
+      "default": "light"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "NEW DROP"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "AS ALWAYS,\nWITH LOVE ®"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Everyday Urban Aesthetics"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button text",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
+{% endschema %}

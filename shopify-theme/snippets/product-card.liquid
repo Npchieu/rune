@@ -1,0 +1,76 @@
+{%- liquid
+  assign text_color = text_color | default: '#ffffff'
+  assign show_quick = show_quick | default: true
+-%}
+
+<div class="product-card" data-product-id="{{ product.id }}">
+  <a href="{{ product.url }}" class="product-card__media-link" tabindex="-1" aria-hidden="true">
+    <div class="product-card__media">
+      {%- if product.featured_media -%}
+        <img
+          src="{{ product.featured_media | image_url: width: 800 }}"
+          alt="{{ product.featured_media.alt | escape }}"
+          class="product-card__img product-card__img--primary"
+          loading="lazy"
+          width="400"
+          height="500"
+        >
+        {%- if product.media[1] -%}
+          <img
+            src="{{ product.media[1] | image_url: width: 800 }}"
+            alt="{{ product.media[1].alt | escape }}"
+            class="product-card__img product-card__img--hover"
+            loading="lazy"
+            width="400"
+            height="500"
+          >
+        {%- endif -%}
+      {%- else -%}
+        <div class="product-card__img-placeholder">
+          {{ product.title | slice: 0 }}
+        </div>
+      {%- endif -%}
+
+      {%- if product.compare_at_price > product.price -%}
+        <span class="product-card__badge product-card__badge--sale">SALE</span>
+      {%- elsif product.created_at > 'now' | date: '%s' | minus: 604800 | date: '%Y-%m-%dT%H:%M:%SZ' -%}
+        <span class="product-card__badge product-card__badge--new">NEW</span>
+      {%- endif -%}
+
+      {%- if show_quick -%}
+        <div class="product-card__quick-add">
+          {%- if product.variants.size == 1 -%}
+            <button
+              class="product-card__quick-btn"
+              data-variant-id="{{ product.first_available_variant.id }}"
+              data-product-title="{{ product.title | escape }}"
+              {%- unless product.first_available_variant.available -%}disabled{%- endunless -%}
+            >
+              {%- if product.first_available_variant.available -%}
+                QUICK ADD
+              {%- else -%}
+                SOLD OUT
+              {%- endif -%}
+            </button>
+          {%- else -%}
+            <a href="{{ product.url }}" class="product-card__quick-btn">SELECT SIZE</a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </a>
+
+  <div class="product-card__info">
+    <a href="{{ product.url }}" class="product-card__title-link">
+      <span class="product-card__title" style="color: {{ text_color }}">{{ product.title }}</span>
+    </a>
+    <div class="product-card__pricing" style="color: {{ text_color }}">
+      {%- if product.compare_at_price > product.price -%}
+        <span class="product-card__price product-card__price--sale">{{ product.price | money }}</span>
+        <span class="product-card__price product-card__price--compare">{{ product.compare_at_price | money }}</span>
+      {%- else -%}
+        <span class="product-card__price">{{ product.price | money }}</span>
+      {%- endif -%}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <title>
+    {{ page_title }}
+    {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+    {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+    {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+  </title>
+
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- endif -%}
+
+  <link rel="canonical" href="{{ canonical_url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  {{ content_for_header }}
+
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+</head>
+
+<body class="template-{{ template | replace: '.', '-' | split: '/' | last }}">
+
+  {%- sections 'header' -%}
+
+  <main id="main-content" role="main">
+    {{ content_for_layout }}
+  </main>
+
+  {%- sections 'footer' -%}
+
+  <!-- Cart Drawer -->
+  <div id="cart-drawer" class="cart-drawer" aria-hidden="true">
+    <div class="cart-drawer__overlay"></div>
+    <div class="cart-drawer__panel">
+      <div class="cart-drawer__header">
+        <span class="cart-drawer__title">YOUR BAG</span>
+        <button class="cart-drawer__close" aria-label="Close cart">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </button>
+      </div>
+      <div class="cart-drawer__body" id="cart-drawer-body">
+        <div class="cart-drawer__empty">
+          <p>YOUR BAG IS EMPTY</p>
+          <a href="/collections/all" class="btn btn--primary">SHOP NOW</a>
+        </div>
+      </div>
+      <div class="cart-drawer__footer" id="cart-drawer-footer" style="display:none">
+        <div class="cart-drawer__subtotal">
+          <span>SUBTOTAL</span>
+          <span id="cart-subtotal"></span>
+        </div>
+        <a href="/cart" class="btn btn--primary btn--full">VIEW BAG</a>
+        <button class="btn btn--secondary btn--full" id="checkout-btn">CHECKOUT</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu__overlay"></div>
+    <div class="mobile-menu__panel">
+      <div class="mobile-menu__header">
+        <span class="mobile-menu__logo">SCUFFERS</span>
+        <button class="mobile-menu__close" aria-label="Close menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </button>
+      </div>
+      <nav class="mobile-menu__nav">
+        <a href="/collections/all" class="mobile-menu__link">ALL</a>
+        <a href="/collections/hoodies" class="mobile-menu__link">HOODIES</a>
+        <a href="/collections/t-shirts" class="mobile-menu__link">T-SHIRTS</a>
+        <a href="/collections/caps" class="mobile-menu__link">CAPS</a>
+        <a href="/collections/accessories" class="mobile-menu__link">ACCESSORIES</a>
+        <a href="/pages/about" class="mobile-menu__link">ABOUT</a>
+      </nav>
+      <div class="mobile-menu__footer">
+        <p>AS ALWAYS, WITH LOVE ®</p>
+      </div>
+    </div>
+  </div>
+
+  {{ 'theme.js' | asset_url | script_tag }}
+</body>
+</html>

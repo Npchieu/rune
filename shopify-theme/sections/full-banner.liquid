@@ -1,0 +1,137 @@
+<section
+  class="full-banner"
+  data-header-color="{{ section.settings.header_color }}"
+>
+  <a href="{{ section.settings.link }}" class="full-banner__link">
+    <div
+      class="full-banner__media"
+      style="
+        background-color: {{ section.settings.bg_color }};
+        min-height: {{ section.settings.height }}vh;
+      "
+    >
+      {%- if section.settings.image != blank -%}
+        <img
+          src="{{ section.settings.image | image_url: width: 2000 }}"
+          alt="{{ section.settings.heading | escape }}"
+          class="full-banner__img"
+          loading="lazy"
+          width="2000"
+          height="1000"
+        >
+      {%- endif -%}
+      <div class="full-banner__overlay" style="opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};"></div>
+    </div>
+
+    <div class="full-banner__content full-banner__content--{{ section.settings.content_position }}" style="color: {{ section.settings.text_color }};">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="full-banner__eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="full-banner__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.cta_label != blank -%}
+        <span class="full-banner__cta">
+          {{ section.settings.cta_label }}
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M4 10h12M12 5l5 5-5 5" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </span>
+      {%- endif -%}
+    </div>
+  </a>
+</section>
+
+{% schema %}
+{
+  "name": "Full Width Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "height",
+      "label": "Height (vh)",
+      "min": 40,
+      "max": 100,
+      "step": 5,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "default": 30
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "header_color",
+      "label": "Header/logo color when in this section",
+      "options": [
+        {"value": "light", "label": "Light (white)"},
+        {"value": "dark", "label": "Dark (black)"}
+      ],
+      "default": "light"
+    },
+    {
+      "type": "select",
+      "id": "content_position",
+      "label": "Content position",
+      "options": [
+        {"value": "top-left", "label": "Top Left"},
+        {"value": "top-right", "label": "Top Right"},
+        {"value": "center", "label": "Center"},
+        {"value": "bottom-left", "label": "Bottom Left"},
+        {"value": "bottom-right", "label": "Bottom Right"}
+      ],
+      "default": "bottom-left"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "COLLECTION"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "DARK SEASON"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA text",
+      "default": "SHOP THE LOOK"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Full Width Banner"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,70 @@
+<section
+  class="marquee-section"
+  data-header-color="{{ section.settings.header_color }}"
+  style="background-color: {{ section.settings.bg_color }}; color: {{ section.settings.text_color }};"
+>
+  <div class="marquee-track" aria-hidden="true">
+    <div class="marquee-inner" style="animation-duration: {{ section.settings.speed }}s;">
+      {%- for i in (1..6) -%}
+        <span class="marquee-item">{{ section.settings.text }}</span>
+        <span class="marquee-sep">✦</span>
+      {%- endfor -%}
+    </div>
+    <div class="marquee-inner" aria-hidden="true" style="animation-duration: {{ section.settings.speed }}s;">
+      {%- for i in (1..6) -%}
+        <span class="marquee-item">{{ section.settings.text }}</span>
+        <span class="marquee-sep">✦</span>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Marquee",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Marquee text",
+      "default": "AS ALWAYS, WITH LOVE ® EVERYDAY URBAN AESTHETICS"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "select",
+      "id": "header_color",
+      "label": "Header/logo color when in this section",
+      "options": [
+        {"value": "light", "label": "Light (white)"},
+        {"value": "dark", "label": "Dark (black)"}
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Speed (seconds for full loop)",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "default": 25
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee"
+    }
+  ]
+}
+{% endschema %}

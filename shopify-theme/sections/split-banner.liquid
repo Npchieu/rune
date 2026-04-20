@@ -1,0 +1,151 @@
+<section
+  class="split-banner"
+  data-header-color="{{ section.settings.header_color }}"
+  style="background-color: {{ section.settings.bg_color }};"
+>
+  <div class="split-banner__inner split-banner__inner--{{ section.settings.image_position }}">
+
+    <!-- Media side -->
+    <div class="split-banner__media">
+      {%- if section.settings.image != blank -%}
+        <img
+          src="{{ section.settings.image | image_url: width: 1200 }}"
+          alt="{{ section.settings.heading | escape }}"
+          class="split-banner__img"
+          loading="lazy"
+          width="600"
+          height="800"
+        >
+      {%- else -%}
+        <div class="split-banner__placeholder" style="background: {{ section.settings.image_fallback }};"></div>
+      {%- endif -%}
+    </div>
+
+    <!-- Content side -->
+    <div class="split-banner__content" style="background-color: {{ section.settings.content_bg }}; color: {{ section.settings.text_color }};">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="split-banner__eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="split-banner__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.body != blank -%}
+        <div class="split-banner__body">{{ section.settings.body }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.cta_label != blank -%}
+        <a
+          href="{{ section.settings.cta_url }}"
+          class="btn {% if section.settings.btn_style == 'light' %}btn--light{% elsif section.settings.btn_style == 'dark' %}btn--dark{% else %}btn--outline{% endif %}"
+        >
+          {{ section.settings.cta_label }}
+        </a>
+      {%- endif -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Split Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "color",
+      "id": "image_fallback",
+      "label": "Image fallback color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        {"value": "left", "label": "Left"},
+        {"value": "right", "label": "Right"}
+      ],
+      "default": "left"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section background",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "color",
+      "id": "content_bg",
+      "label": "Content panel background",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "header_color",
+      "label": "Header/logo color when in this section",
+      "options": [
+        {"value": "light", "label": "Light (white)"},
+        {"value": "dark", "label": "Dark (black)"}
+      ],
+      "default": "light"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "THE BRAND"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "BORN IN THE STREETS"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body text",
+      "default": "<p>Everyday urban aesthetics. Designed for those who live authentically, move freely, and dress with intention.</p>"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button text",
+      "default": "OUR STORY"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "select",
+      "id": "btn_style",
+      "label": "Button style",
+      "options": [
+        {"value": "light", "label": "Light (white)"},
+        {"value": "dark", "label": "Dark (black)"},
+        {"value": "outline", "label": "Outline"}
+      ],
+      "default": "light"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Split Banner"
+    }
+  ]
+}
+{% endschema %}

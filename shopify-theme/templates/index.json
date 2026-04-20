@@ -1,0 +1,152 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "bg_color": "#0a0a0a",
+        "text_color": "#ffffff",
+        "header_color": "light",
+        "eyebrow": "NEW DROP — SS26",
+        "heading": "AS ALWAYS,\nWITH LOVE ®",
+        "subheading": "Everyday Urban Aesthetics",
+        "cta_label": "SHOP THE COLLECTION",
+        "overlay_opacity": 40
+      }
+    },
+    "marquee_1": {
+      "type": "marquee",
+      "settings": {
+        "text": "AS ALWAYS, WITH LOVE ® EVERYDAY URBAN AESTHETICS ® SCUFFERS ®",
+        "bg_color": "#ffffff",
+        "text_color": "#0a0a0a",
+        "header_color": "dark",
+        "speed": 25
+      }
+    },
+    "collection_banners": {
+      "type": "collection-banners",
+      "blocks": {
+        "banner_hoodies": {
+          "type": "banner",
+          "settings": {
+            "label": "HOODIES",
+            "eyebrow": "DROP 01",
+            "cta": "SHOP NOW",
+            "fallback_color": "#111111",
+            "overlay_opacity": 25,
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_tees": {
+          "type": "banner",
+          "settings": {
+            "label": "T-SHIRTS",
+            "eyebrow": "DROP 02",
+            "cta": "SHOP NOW",
+            "fallback_color": "#1a1a1a",
+            "overlay_opacity": 25,
+            "text_color": "#ffffff"
+          }
+        },
+        "banner_caps": {
+          "type": "banner",
+          "settings": {
+            "label": "CAPS",
+            "eyebrow": "DROP 03",
+            "cta": "SHOP NOW",
+            "fallback_color": "#222222",
+            "overlay_opacity": 25,
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": ["banner_hoodies", "banner_tees", "banner_caps"],
+      "settings": {
+        "bg_color": "#0a0a0a",
+        "header_color": "light",
+        "section_label": "COLLECTIONS",
+        "label_color": "#555555"
+      }
+    },
+    "featured_products": {
+      "type": "featured-products",
+      "settings": {
+        "heading": "LATEST DROP",
+        "product_limit": 4,
+        "columns": "4",
+        "bg_color": "#0a0a0a",
+        "text_color": "#ffffff",
+        "header_color": "light"
+      }
+    },
+    "split_banner_1": {
+      "type": "split-banner",
+      "settings": {
+        "image_position": "left",
+        "bg_color": "#f5f5f0",
+        "content_bg": "#f5f5f0",
+        "text_color": "#0a0a0a",
+        "header_color": "dark",
+        "eyebrow": "THE BRAND",
+        "heading": "BORN IN THE STREETS",
+        "body": "<p>Everyday urban aesthetics. Designed for those who live authentically, move freely, and dress with intention. From Madrid to the world.</p>",
+        "cta_label": "OUR STORY",
+        "btn_style": "dark",
+        "image_fallback": "#d0c9c0"
+      }
+    },
+    "full_banner_1": {
+      "type": "full-banner",
+      "settings": {
+        "bg_color": "#111111",
+        "height": 80,
+        "overlay_opacity": 30,
+        "text_color": "#ffffff",
+        "header_color": "light",
+        "content_position": "bottom-left",
+        "eyebrow": "WINTER COLLECTION",
+        "heading": "DARK SEASON",
+        "cta_label": "SHOP THE LOOK"
+      }
+    },
+    "marquee_2": {
+      "type": "marquee",
+      "settings": {
+        "text": "FREE SHIPPING OVER €100 ® WORLDWIDE DELIVERY ® EASY RETURNS ®",
+        "bg_color": "#0a0a0a",
+        "text_color": "#ffffff",
+        "header_color": "light",
+        "speed": 20
+      }
+    },
+    "instagram": {
+      "type": "instagram-grid",
+      "blocks": {
+        "post_1": {"type": "post", "settings": {"fallback_color": "#e8e0d8"}},
+        "post_2": {"type": "post", "settings": {"fallback_color": "#d8d0c8"}},
+        "post_3": {"type": "post", "settings": {"fallback_color": "#c8c0b8"}},
+        "post_4": {"type": "post", "settings": {"fallback_color": "#b8b0a8"}},
+        "post_5": {"type": "post", "settings": {"fallback_color": "#a8a098"}},
+        "post_6": {"type": "post", "settings": {"fallback_color": "#989088"}}
+      },
+      "block_order": ["post_1", "post_2", "post_3", "post_4", "post_5", "post_6"],
+      "settings": {
+        "heading": "FOLLOW THE CULTURE",
+        "handle": "scuffers",
+        "bg_color": "#ffffff",
+        "text_color": "#0a0a0a",
+        "header_color": "dark"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "marquee_1",
+    "collection_banners",
+    "featured_products",
+    "split_banner_1",
+    "full_banner_1",
+    "marquee_2",
+    "instagram"
+  ]
+}
