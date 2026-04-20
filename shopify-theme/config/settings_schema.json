@@ -1,0 +1,63 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Scuffers",
+    "theme_version": "1.0.0",
+    "theme_author": "Scuffers",
+    "theme_documentation_url": "https://scuffers.com",
+    "theme_support_url": "https://scuffers.com/pages/contact"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background",
+        "default": "#0a0a0a"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Body text",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent color",
+        "default": "#ffffff"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "select",
+        "id": "font_heading",
+        "label": "Heading font",
+        "options": [
+          { "value": "Space Grotesk", "label": "Space Grotesk" },
+          { "value": "Space Mono", "label": "Space Mono" }
+        ],
+        "default": "Space Grotesk"
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram",
+        "label": "Instagram handle"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok",
+        "label": "TikTok handle"
+      }
+    ]
+  }
+]
