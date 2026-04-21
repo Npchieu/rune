@@ -1,0 +1,52 @@
+<div class="cart-page" style="background:#0a0a0a;min-height:100vh;padding-top:var(--header-h,64px);">
+  <div class="cart-page__inner" style="max-width:900px;margin:0 auto;padding:60px 24px;">
+    <h1 style="font-family:'Space Mono',monospace;font-size:clamp(28px,4vw,48px);font-weight:700;letter-spacing:-0.02em;text-transform:uppercase;color:#fff;margin-bottom:48px;">YOUR BAG</h1>
+
+    {%- if cart.item_count == 0 -%}
+      <div style="text-align:center;padding:80px 0;opacity:0.5;">
+        <p style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#fff;margin-bottom:32px;">YOUR BAG IS EMPTY</p>
+        <a href="/collections/all" class="btn btn--primary">SHOP NOW</a>
+      </div>
+    {%- else -%}
+      <form action="/cart" method="post">
+        <div style="display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(255,255,255,0.1);">
+          {%- for item in cart.items -%}
+            <div style="display:grid;grid-template-columns:100px 1fr auto;gap:24px;align-items:start;padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.08);">
+              <a href="{{ item.url }}">
+                <img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.title | escape }}" style="width:100%;aspect-ratio:3/4;object-fit:cover;" loading="lazy">
+              </a>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <a href="{{ item.url }}" style="color:#fff;font-size:14px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;">{{ item.product_title }}</a>
+                {%- unless item.variant_title == 'Default Title' -%}
+                  <span style="font-size:12px;opacity:0.5;color:#fff;">{{ item.variant_title }}</span>
+                {%- endunless -%}
+                <div style="display:flex;align-items:center;gap:0;border:1.5px solid rgba(255,255,255,0.2);width:fit-content;margin-top:8px;">
+                  <button type="button" style="width:40px;height:40px;background:transparent;border:none;color:#fff;font-size:18px;cursor:pointer;" onclick="this.nextElementSibling.stepDown();this.nextElementSibling.dispatchEvent(new Event('change'))">−</button>
+                  <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" style="width:48px;height:40px;background:transparent;border:none;border-left:1px solid rgba(255,255,255,0.2);border-right:1px solid rgba(255,255,255,0.2);color:#fff;text-align:center;font-family:'Space Mono',monospace;font-size:13px;">
+                  <button type="button" style="width:40px;height:40px;background:transparent;border:none;color:#fff;font-size:18px;cursor:pointer;" onclick="this.previousElementSibling.stepUp();this.previousElementSibling.dispatchEvent(new Event('change'))">+</button>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <span style="font-family:'Space Mono',monospace;font-size:14px;color:#fff;">{{ item.final_line_price | money }}</span>
+                <br>
+                <a href="/cart/change?line={{ forloop.index }}&quantity=0" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;opacity:0.4;color:#fff;margin-top:8px;display:block;transition:opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.4">REMOVE</a>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:16px;padding-top:32px;">
+          <div style="display:flex;justify-content:space-between;width:100%;max-width:360px;">
+            <span style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.14em;color:#fff;opacity:0.6;">SUBTOTAL</span>
+            <span style="font-family:'Space Mono',monospace;font-size:16px;color:#fff;">{{ cart.total_price | money }}</span>
+          </div>
+          <p style="font-size:12px;opacity:0.4;color:#fff;width:100%;max-width:360px;text-align:right;">Taxes and shipping calculated at checkout</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end;">
+            <button type="submit" name="update" class="btn btn--secondary">UPDATE BAG</button>
+            <button type="submit" name="checkout" class="btn btn--primary">CHECKOUT →</button>
+          </div>
+        </div>
+      </form>
+    {%- endif -%}
+  </div>
+</div>

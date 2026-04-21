@@ -1,0 +1,14 @@
+<div style="background:#0a0a0a;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;padding-top:calc(var(--header-h,64px) + 40px);">
+  <div style="max-width:480px;width:100%;text-align:center;color:#fff;">
+    <h1 style="font-family:'Space Mono',monospace;font-size:clamp(24px,4vw,40px);font-weight:700;letter-spacing:-0.02em;text-transform:uppercase;margin-bottom:8px;">GIFT CARD</h1>
+    <p style="opacity:0.5;margin-bottom:40px;">{{ gift_card.initial_value | money }} Gift Card</p>
+    <div style="background:#1a1a1a;padding:32px;margin-bottom:32px;">
+      {{ gift_card.qr_identifier | qr_code }}
+      <p style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.14em;margin-top:20px;opacity:0.7;">{{ gift_card.code | format_code }}</p>
+    </div>
+    <p style="font-size:13px;opacity:0.5;">Balance: <strong>{{ gift_card.balance | money }}</strong></p>
+    {%- if gift_card.pass_url -%}
+      <a href="{{ gift_card.pass_url }}" style="display:block;margin-top:24px;opacity:0.6;font-size:12px;">Add to Apple Wallet</a>
+    {%- endif -%}
+  </div>
+</div>
